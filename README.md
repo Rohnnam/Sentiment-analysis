@@ -29,8 +29,12 @@ The sentiment distribution of the collected Reddit posts is visualized using Mat
 1. Install the required dependencies:
    ```bash
    pip install praw textblob matplotlib
+2. Obtain Reddit API credentials and update the placeholders in the code:
+    ```
     reddit = praw.Reddit(client_id='YOUR_CLIENT_ID',
                      client_secret='YOUR_CLIENT_SECRET',
                      user_agent='YOUR_USER_AGENT')
+3. Run the sentiment analysis script:
+   ```
    python sentiment_analysis.py
 
