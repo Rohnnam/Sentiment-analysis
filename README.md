@@ -22,7 +22,7 @@ This project performs sentiment analysis on Reddit posts using the PRAW library 
 
 The sentiment distribution of the collected Reddit posts is visualized using Matplotlib. The graph is saved as `sentiment_distribution.png` in the project directory.
 
-![Sentiment Distribution](sentiment_distribution.png)
+![Sentiment Distribution](Figure_1.png)
 
 ## Usage
 
