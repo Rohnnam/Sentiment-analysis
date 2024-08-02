@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Reddit API credentials (replace with your own)
-reddit = praw.Reddit(client_id='AOhi1D5rNf8UQ3iWyMvfJg',
-                     client_secret='3_GPYlMSrEZUulmASWpunyZ8MFZP-w',
-                     user_agent='RNam_sentiment-analysis')
+reddit = praw.Reddit(client_id='YOUR_CLIENT_ID',
+                     client_secret='YOUR_CLIENT_SECRET',
+                     user_agent='YOUR_USER_AGENT')
 
 
 subreddit_names = ['learnpython', 'datascience', 'machinelearning', 'programming',
