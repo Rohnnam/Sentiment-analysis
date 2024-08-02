@@ -5,10 +5,9 @@ from textblob import TextBlob
 import matplotlib.pyplot as plt
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
+from config import REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, REDDIT_USER_AGENT
 
-reddit = praw.Reddit(client_id='REDDIT_CLIENT_ID',
-                     client_secret='REDDIT_CLIENT_SECRET',
-                     user_agent='REDDIT_USER_AGENT')
+reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID, client_secret=REDDIT_CLIENT_SECRET, user_agent=REDDIT_USER_AGENT)
 
 
 subreddit_names = ['learnpython', 'datascience', 'machinelearning', 'programming',
