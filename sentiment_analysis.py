@@ -5,10 +5,10 @@ from textblob import TextBlob
 import matplotlib.pyplot as plt
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-# Reddit API credentials (replace with your own)
-reddit = praw.Reddit(client_id='YOUR_CLIENT_ID',
-                     client_secret='YOUR_CLIENT_SECRET',
-                     user_agent='YOUR_USER_AGENT')
+
+reddit = praw.Reddit(client_id='REDDIT_CLIENT_ID',
+                     client_secret='REDDIT_CLIENT_SECRET',
+                     user_agent='REDDIT_USER_AGENT')
 
 
 subreddit_names = ['learnpython', 'datascience', 'machinelearning', 'programming',
@@ -17,7 +17,7 @@ subreddit_names = ['learnpython', 'datascience', 'machinelearning', 'programming
                    'videos', 'askreddit', 'todayilearned', 'showerthoughts', 
                    'lifeprotips']
 
-# Collect posts from a specific subreddit
+
 def collect_reddit_data(subreddit, limit=1000):
     posts = []
     subreddit_instance = reddit.subreddit(subreddit)
@@ -25,15 +25,14 @@ def collect_reddit_data(subreddit, limit=1000):
         posts.append({'subreddit': subreddit, 'title': post.title, 'selftext': post.selftext})
     return posts
 
-# Analyze sentiment
-def analyze_sentiment(text):
-    return TextBlob(text).sentiment.polarity  # Returns a value between -1 (negative) and 1 (positive)
 
-# Main function to run the analysis
+def analyze_sentiment(text):
+    return TextBlob(text).sentiment.polarity 
+
 def main():
     all_posts = []
 
-    # Use ThreadPoolExecutor to collect data concurrently
+ 
     with ThreadPoolExecutor(max_workers=10) as executor:
         future_to_subreddit = {executor.submit(collect_reddit_data, subreddit, 1000): subreddit for subreddit in subreddit_names}
         for future in as_completed(future_to_subreddit):
@@ -45,30 +44,30 @@ def main():
             except Exception as e:
                 print(f"Error collecting from r/{subreddit}: {e}")
 
-    # Convert to DataFrame
+
     df_reddit = pd.DataFrame(all_posts)
 
-    # Combine title and selftext for sentiment analysis
+
     df_reddit['combined_text'] = df_reddit['title'] + ' ' + df_reddit['selftext']
     
-    # Analyze sentiment
+
     df_reddit['sentiment'] = df_reddit['combined_text'].apply(analyze_sentiment)
     
-    # Classify sentiment
+ 
     df_reddit['sentiment_label'] = df_reddit['sentiment'].apply(lambda x: 'positive' if x > 0 else ('negative' if x < 0 else 'neutral'))
     
-    # Visualize sentiment distribution
+  
     plt.figure(figsize=(10, 6))
     df_reddit['sentiment_label'].value_counts().plot(kind='bar')
     plt.title('Sentiment Distribution of Reddit Posts')
     plt.xlabel('Sentiment Label')
     plt.ylabel('Count')
-    plt.xticks(rotation=45)  # Rotate x-axis labels for better readability
-    plt.tight_layout()  # Adjust layout to prevent clipping of labels
-    plt.savefig('sentiment_distribution.png')  # Save the figure
-    plt.show()  # Display the figure
-    
-    # Display results
+    plt.xticks(rotation=45) 
+    plt.tight_layout() 
+    plt.savefig('sentiment_distribution.png') 
+    plt.show() 
+
+  
     print(f"Collected {len(df_reddit)} posts from {len(subreddit_names)} subreddits.")
     print(f"Achieved an accuracy of approximately 85% in sentiment classification, improving the baseline by 20%.")
     print(f"Reduced preprocessing and training time by 40% through optimized algorithms.")
