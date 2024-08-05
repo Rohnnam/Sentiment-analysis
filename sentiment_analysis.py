@@ -68,11 +68,6 @@ def main():
 
   
     print(f"Collected {len(df_reddit)} posts from {len(subreddit_names)} subreddits.")
-    print(f"Achieved an accuracy of approximately 85% in sentiment classification, improving the baseline by 20%.")
-    print(f"Reduced preprocessing and training time by 40% through optimized algorithms.")
-    print(f"Processed over 1 million social media posts per day, demonstrating scalability.")
-    print(f"Improved sentiment detection precision to 90%, enhancing reliability.")
-    print(f"Achieved real-time analysis with a processing speed of 50 milliseconds per post.")
 
 if __name__ == "__main__":
     main()
