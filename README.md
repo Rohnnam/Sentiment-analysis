@@ -10,7 +10,7 @@ This project performs sentiment analysis on Reddit posts using the PRAW library 
 - Visualizes sentiment distribution using Matplotlib
 - Demonstrates scalability by processing over 1 million posts per day
 
-## Quantifiable Achievements
+## Achievements
 
 - Achieved an accuracy of approximately 85% in sentiment classification, improving the baseline by 20%
 - Reduced preprocessing and training time by 40% through optimized algorithms
